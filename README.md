@@ -1,6 +1,6 @@
 # Test-Elysian
 
-The system involves several key entities: Pharmacy, Product, Order, and OrderLine. The application includes functionalities to record orders from pharmacies, track products, and generate various reports based on the data. The database is set up and initialized using schema.sql and data.sql scripts. These scripts define the database schema and insert data.
+The system involves several key entities: Pharmacy, Product, Order, and OrderLine. The application includes functionalities to record orders from pharmacies, track products, and generate various reports based on the data. The database is set up and initialized using schema.sql and data.sql scripts. These scripts define the database schema and insert data. Most of the logic is done in ReportController and ReportService.
 
 Entities:
 
@@ -27,7 +27,7 @@ Determining the pharmacy with the highest total order value in a given year.
 
 Controller Layer:
 
-ReportController: REST controller that exposes endpoints for the report functionalities provided by ReportService. These endpoints handle HTTP GET requests and return the required data, such as orders, total amounts, and other statistics.
+ReportController: REST controller that exposes endpoints for the report functionalities provided by ReportService. These endpoints handle HTTP GET requests and return the required data, such as orders, total amounts and reports.
 
 Endpoints:
 
