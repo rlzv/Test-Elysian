@@ -1,47 +1,32 @@
--- Creating the Pharmacies table
-CREATE TABLE Pharmacies (
-                            id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                            name VARCHAR(255) NOT NULL,
-                            address VARCHAR(255)
-);
+-- Create Pharmacy table
+CREATE TABLE IF NOT EXISTS pharmacy (
+                                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                        name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL
+    );
 
--- Creating the Products table
-CREATE TABLE Products (
-                          id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                          name VARCHAR(255) NOT NULL,
-                          price DECIMAL(10, 2) NOT NULL
-);
+-- Create Product table
+CREATE TABLE IF NOT EXISTS product (
+                                       id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                       name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    category VARCHAR(255)
+    );
 
--- Creating the Categories table
-CREATE TABLE Categories (
-                            id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                            name VARCHAR(255) NOT NULL
-);
+-- Create Order table
+CREATE TABLE IF NOT EXISTS orders (
+                                      id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                      pharmacy_id BIGINT NOT NULL,
+                                      order_date DATE NOT NULL,
+                                      FOREIGN KEY (pharmacy_id) REFERENCES pharmacy(id)
+    );
 
--- Creating the ProductCategory table (many-to-many relationship)
-CREATE TABLE ProductCategory (
-                                 product_id BIGINT,
-                                 category_id BIGINT,
-                                 PRIMARY KEY (product_id, category_id),
-                                 FOREIGN KEY (product_id) REFERENCES Products(id),
-                                 FOREIGN KEY (category_id) REFERENCES Categories(id)
-);
-
--- Creating the Orders table
-CREATE TABLE Orders (
-                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                        pharmacy_id BIGINT,
-                        order_date DATE,
-                        total_amount DECIMAL(10, 2),
-                        FOREIGN KEY (pharmacy_id) REFERENCES Pharmacies(id)
-);
-
--- Creating the OrderLines table
-CREATE TABLE OrderLines (
-                            id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                            order_id BIGINT,
-                            product_id BIGINT,
-                            quantity INT,
-                            FOREIGN KEY (order_id) REFERENCES Orders(id),
-                            FOREIGN KEY (product_id) REFERENCES Products(id)
-);
+-- Create OrderLine table
+CREATE TABLE IF NOT EXISTS order_line (
+                                          id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                          order_id BIGINT NOT NULL,
+                                          product_id BIGINT NOT NULL,
+                                          quantity INT NOT NULL,
+                                          FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (product_id) REFERENCES product(id)
+    );
