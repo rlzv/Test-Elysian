@@ -32,7 +32,11 @@ ReportController: REST controller that exposes endpoints for the report function
 Endpoints:
 
 Orders in August by Dona: http://localhost:8080/api/report/orders?pharmacyName=Dona&month=8
+
 Total Amount for Dona in August: http://localhost:8080/api/report/total-amount?pharmacyName=Dona&month=8
+
 Average Order Value for Dona in August: http://localhost:8080/api/report/average-value?pharmacyName=Dona&month=8
+
 Antibiotic Orders for Vlad in 2023: http://localhost:8080/api/report/antibiotic-orders?pharmacyName=Vlad&year=2023
+
 Top Ordering Pharmacy in 2023: http://localhost:8080/api/report/top-pharmacy?year=2023
